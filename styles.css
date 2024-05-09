@@ -1,0 +1,82 @@
+body,
+html {
+  margin: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-image: radial-gradient(
+    white,
+    #c0ced6,
+    #d2e3ec
+  ); /* Dark blue background to match your logos */
+  color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+}
+
+.logo {
+  position: absolute;
+  top: 0px;
+  left: -10px;
+  padding: 0px;
+  height: 120px;
+}
+
+.product-logo {
+  height: 400px;
+}
+
+.coming-soon {
+  margin-bottom: 20px;
+  font-size: 32px;
+  animation: blink 2.5s linear infinite;
+  color: black;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+form {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4c81af; /* Green button */
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
