@@ -23,7 +23,7 @@ html {
 /* Styling for the first logo to be on the top left */
 .logo {
   position: absolute;
-  top: 10vh;
+  top: 1vh;
   left: 2vw;
   width: 10vw; /* Responsive width based on viewport width */
   height: auto;
