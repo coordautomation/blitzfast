@@ -31,7 +31,7 @@ html {
 
 /* Centering the main logo with increased emphasis */
 .product-logo {
-  width: 20em; /* Prominently larger and responsive */
+  width: 40em; /* Prominently larger and responsive */
   height: auto;
   margin-top: 1em; /* Space from top of page, responsive */
   align-self: stretch;
