@@ -31,7 +31,7 @@ html {
 
 /* Centering the main logo with increased emphasis */
 .product-logo {
-  width: 25vw; /* Prominently larger and responsive */
+  width: 2em; /* Prominently larger and responsive */
   height: auto;
   margin-top: 1em; /* Space from top of page, responsive */
   align-self: stretch;
@@ -86,7 +86,7 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20em;
+  margin-top: 10em;
   margin-right: 10vw;
   margin-left: 10vw;
 }
