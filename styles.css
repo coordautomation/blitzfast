@@ -33,7 +33,7 @@ html {
 .product-logo {
   width: 25vw; /* Prominently larger and responsive */
   height: auto;
-  margin-top: 2vh; /* Space from top of page, responsive */
+  margin-top: 1vh; /* Space from top of page, responsive */
   align-self: center;
 }
 
