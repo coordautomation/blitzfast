@@ -1,4 +1,4 @@
-const form = document.querySelector("#form")
+const form = document.querySelector(".inquiry-form")
    const submitButton = document.querySelector("#submit")
    const scriptURL =  "https://script.google.com/macros/s/AKfycbwe2qjhdh7cMlAlVNqg3UPNalnP3v9h10aXpqPpQHnmPScPsmx8UmFYAY3qkk7E0rGPLA/exec"
 
