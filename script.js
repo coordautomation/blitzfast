@@ -2,9 +2,7 @@ document
   .querySelector(".inquiry-form")
   .addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent the default form submission
-                alert(
-          "We have "
-        );
+               
     var formData = new FormData(this); // Gather form data
 
     fetch(
