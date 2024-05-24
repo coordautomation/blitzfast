@@ -6,8 +6,7 @@ document
     var formData = new FormData(this); // Gather form data
 
     fetch(
-       "https://script.google.com/a/macros/coordautomation.com/s/AKfycbyIWKzN7NX5etnfE-QD0q_650ib21o9LyjCjnzY6HOnG-FXJSpFH_e6rRo-r7av4xURfg/exec"
-
+       " https://script.google.com/macros/s/AKfycbxCGB8VIkB30tnWo-eINarVIYWzPzoCkLdP9KWTAqXpi-LOvB10gHDqkIPg1XXrYmVbnw/exec"
             
            {
         method: "POST",
