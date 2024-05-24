@@ -33,7 +33,7 @@ html {
 .product-logo {
   width: 40mm; /* Prominently larger and responsive */
   height: auto;
-  margin-top: 1mm; /* Space from top of page, responsive */
+  margin-top: -100mm; /* Space from top of page, responsive */
   align-self: flex-start;
 }
 
