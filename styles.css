@@ -34,7 +34,7 @@ html {
   width: 40vw; /* Prominently larger and responsive */
   height: auto;
   margin-top: 0vh; /* Space from top of page, responsive */
-  align-self: stretch;
+  align-self: flex-start;
 }
 
 /* Alignment of product images around the form */
