@@ -1,12 +1,12 @@
 document
-  .querySelector("Enquiry Form")
+  .querySelector(".inquiry-form")
   .addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent the default form submission
                
     var formData = new FormData(this); // Gather form data
 
     fetch(
-       "https://docs.google.com/spreadsheets/d/1QqbjnJoJUmiodF3TMCkJVoMBBQs6hmbCtSR_fUloWUk/edit?usp=sharing_eil_se_dm&ts=665d9e28"
+       "https://script.google.com/macros/s/AKfycbw9vUx_4Aqw-Fxvw8KeENzlwSCkANWUk4fP0LkydqmhgUzF7izhaa_ukEjQ4iyvNqVc-g/exec"
             
            {
         method: "POST",
@@ -18,7 +18,7 @@ document
         alert(
           "We have received your inquiry, we will get back to you shortly on the provided email address."
         );
-        document.querySelector("Enquiry Form").reset(); // Reset form after submission
+        document.querySelector(".inquiry-form").reset(); // Reset form after submission
       })
       .catch((error) => console.error("Error:", error));
   });
