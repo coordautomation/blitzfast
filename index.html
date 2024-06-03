@@ -53,7 +53,7 @@
         formData.forEach((value, key) => {
           data[key] = value;
         });
-        fetch("YOUR_WEB_APP_URL", {
+        fetch("http://www.blitzfast.in/", {
           method: "POST",
           body: new URLSearchParams(data),
         }).then(response => {
