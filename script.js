@@ -1,5 +1,5 @@
 function doPost(e) {
-  var sheet = SpreadsheetApp.openById('YOUR_SHEET_ID').getSheetByName('Sheet1');
+  var sheet = SpreadsheetApp.openById('1210718963').getSheetByName('Enquiry Form');
   var data = JSON.parse(e.postData.contents);
 
   sheet.appendRow([data.name, data.email, data.message]);
