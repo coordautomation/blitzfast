@@ -22,7 +22,7 @@ html {
 
 /* Styling for the first logo to be on the top left */
 .logo {
-  position: left;
+  position: absolute; /* Changed to absolute to position it correctly */
   top: 1vh;
   left: 2vw;
   width: 10vw; /* Responsive width based on viewport width */
@@ -34,7 +34,7 @@ html {
   width: 40mm; /* Prominently larger and responsive */
   height: auto;
   margin-top: -10mm; /* Space from top of page, responsive */
-  align-self: flex-start;
+  align-self: center; /* Centered horizontally */
 }
 
 /* Alignment of product images around the form */
@@ -42,7 +42,8 @@ html {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  margin: -22vh 0;
+  margin-top: -22vh;
+  margin-bottom: 2vh;
   align-items: center;
 }
 
@@ -51,14 +52,12 @@ html {
   width: 25vw; /* Responsive width based on viewport width */
   height: auto;
   margin: 0 1vw;
-  margin-left: -5vw;
 }
 
 .product-image-2 {
   width: 25vw; /* Responsive width based on viewport width */
   height: auto;
   margin: 0 1vw;
-  margin-right: -8vw;
 }
 
 /* Coming soon text with animation */
@@ -87,8 +86,6 @@ html {
   flex-direction: column;
   align-items: center;
   margin-top: 10em;
-  margin-right: 10vw;
-  margin-left: 10vw;
 }
 
 /* Inputs and textarea styling */
@@ -122,13 +119,16 @@ button:hover {
 @media (max-width: 768px) {
   .image-row {
     flex-direction: column; /* Stack images and form vertically on small screens */
+    margin-top: 0; /* Adjust margin for better spacing */
   }
-  .product-image {
-    width: 60%; /* Larger relative width on mobile */
-    margin: 1vh auto; /* Centering images */
+  .product-image-1,
+  .product-image-2 {
+    width: 80vw; /* Larger relative width on mobile */
+    margin: 2vh auto; /* Centering images */
   }
   .inquiry-form {
-    width: 80%; /* More width for better input visibility */
+    width: 90%; /* More width for better input visibility */
+    margin-top: 5vh; /* Adjust margin for better spacing */
   }
   .logo,
   .product-logo {
