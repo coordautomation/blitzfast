@@ -1,58 +1,139 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-image: url('join the revolution-page-001.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+/* Basic resets and styling for consistency */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-image: radial-gradient(white, #c0ced6, #d2e3ec);
+  color: white;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgba(248, 249, 250, 0.8); /* semi-transparent background */
-    padding: 10px 20px;
+/* Container for all content, ensuring full screen coverage and central alignment */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  height: 100vh;
+  padding: 2vh 2vw;
 }
 
+/* Styling for the first logo to be on the top left */
 .logo {
-    max-width: 100px;
-    height: auto;
+  position: absolute; /* Changed to absolute to position it correctly */
+  top: 1vh;
+  left: 2vw;
+  width: 10vw; /* Responsive width based on viewport width */
+  height: auto;
 }
 
-.nav-links {
-    display: flex;
-    justify-content: center;
-    flex-grow: 1;
+/* Centering the main logo with increased emphasis */
+.product-logo {
+  width: 40mm; /* Prominently larger and responsive */
+  height: auto;
+  margin-top: -10mm; /* Space from top of page, responsive */
+  align-self: center; /* Centered horizontally */
 }
 
-.nav-links a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
+/* Alignment of product images around the form */
+.image-row {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: -22vh;
+  margin-bottom: 2vh;
+  align-items: center;
 }
 
-.nav-links a:hover {
-    text-decoration: underline;
+/* Product images styling */
+.product-image-1 {
+  width: 25vw; /* Responsive width based on viewport width */
+  height: auto;
+  margin: 0 1vw;
 }
 
-main {
-    padding: 20px;
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.8); /* semi-transparent background */
+.product-image-2 {
+  width: 25vw; /* Responsive width based on viewport width */
+  height: auto;
+  margin: 0 1vw;
 }
 
+/* Coming soon text with animation */
+.coming-soon {
+  font-size: 3vh; /* Using viewport height for responsive font size */
+  animation: blink 2.5s linear infinite;
+  color: black;
+  margin-bottom: 2vh;
+}
+
+/* Blink animation keyframes */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Inquiry form styling */
+.inquiry-form {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2vh;
+  border-radius: 1vh;
+  width: 35vw; /* Responsive form width */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10em;
+}
+
+/* Inputs and textarea styling */
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 1vh;
+  margin: 1vh 0;
+  border: none;
+  border-radius: 0.5vh;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Button styling */
+button {
+  width: 100%;
+  padding: 1vh;
+  background-color: #4c81af;
+  border: none;
+  color: white;
+  border-radius: 0.5vh;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
-    .nav-links {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .nav-links a {
-        margin: 10px 0;
-    }
+  .image-row {
+    flex-direction: column; /* Stack images and form vertically on small screens */
+    margin-top: 0; /* Adjust margin for better spacing */
+  }
+  .product-image-1,
+  .product-image-2 {
+    width: 80vw; /* Larger relative width on mobile */
+    margin: 2vh auto; /* Centering images */
+  }
+  .inquiry-form {
+    width: 90%; /* More width for better input visibility */
+    margin-top: 5vh; /* Adjust margin for better spacing */
+  }
+  .logo,
+  .product-logo {
+    width: 20vw; /* Adjust logo size for small screens */
+  }
 }
 
 
