@@ -51,23 +51,4 @@ main {
 }
 
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-  .image-row {
-    flex-direction: column; /* Stack images and form vertically on small screens */
-    margin-top: 0; /* Adjust margin for better spacing */
-  }
-  .product-image-1,
-  .product-image-2 {
-    width: 80vw; /* Larger relative width on mobile */
-    margin: 2vh auto; /* Centering images */
-  }
-  .inquiry-form {
-    width: 90%; /* More width for better input visibility */
-    margin-top: 5vh; /* Adjust margin for better spacing */
-  }
-  .logo,
-  .product-logo {
-    width: 20vw; /* Adjust logo size for small screens */
-  }
-}
+
