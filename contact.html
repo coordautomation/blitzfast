@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Website</title>
+    <title>Contact Us</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -36,15 +36,44 @@
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 80%;
-            max-width: 800px;
-            margin: 1em 0;
         }
-        .container img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 1em;
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input, textarea {
+            margin: 0.5em 0;
+            padding: 0.5em;
+            font-size: 1em;
+        }
+        input[type="submit"] {
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 1em;
+        }
+        input[type="submit"]:hover {
+            background-color: #555;
         }
     </style>
 </head>
 <body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact Us</a>
+    </nav>
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>Feel free to reach out to us through the contact form or via email.</p>
+        <form action="YOUR_WEB_APP_URL" method="post">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <input type="submit" value="Send">
+        </form>
+    </div>
+</body>
+</html>
+
