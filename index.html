@@ -22,6 +22,7 @@
             position: fixed;
             top: 0;
             left: 0;
+            z-index: 1000;
         }
         nav a {
             color: white;
@@ -50,6 +51,23 @@
             max-height: 120px;
             margin-right: 1em;
         }
+
+        /* Media Queries */
+        @media only screen and (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav a {
+                margin: 1em;
+            }
+            .container {
+                padding: 1em;
+            }
+            .container img {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -57,7 +75,7 @@
         <img src="bf_logo_trans.png" alt="Logo" class="logo">
         <a href="index.html">Home</a>
         <a href="Product.html">Product</a>
-         <a href="Locate Charger.html">Locate Charger</a>
+        <a href="Locate Charger.html">Locate Charger</a>
         <a href="contact.html">Contact Us</a>
     </nav>
     <div class="container">
@@ -68,4 +86,5 @@
     </div>
 </body>
 </html>
+
 
