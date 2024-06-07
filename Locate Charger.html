@@ -43,7 +43,7 @@
             display: flex;
             flex-direction: column;
         }
-        input {
+        input, select {
             margin: 0.5em 0;
             padding: 0.5em;
             font-size: 1em;
@@ -60,11 +60,6 @@
         input[type="submit"]:hover {
             background-color: #555;
         }
-        #map {
-            flex: 1;
-            width: 100%;
-            height: 500px;
-        }
     </style>
 </head>
 <body>
@@ -76,73 +71,18 @@
     </nav>
     <div class="container">
         <h1>Find Your EV Charger</h1>
-        <form id="chargerForm">
-            <label for="location">Enter Your Location:</label>
-            <input type="text" id="location" placeholder="e.g. New York, NY">
+        <form id="chargerForm" action="https://script.google.com/macros/s/AKfycbxHU6esw8tReLZE-E08fy8wiECtw2EoXREThr0MBSpkwBkcOXkcbXhZlaiMT8-s_dpKJw" method="POST">
+            <label for="type">Select Charger Type:</label>
+            <select id="type" name="type">
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+            </select>
+            <label for="city">Enter City:</label>
+            <input type="text" id="city" name="city" placeholder="e.g. New York">
+            <label for="state">Enter State:</label>
+            <input type="text" id="state" name="state" placeholder="e.g. NY">
             <input type="submit" value="Locate Charger">
         </form>
-        <div id="map"></div>
     </div>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDv2wGJtKZjMOTjKbIqibtbYEKQHr45r-o&callback=initMap" async defer></script>
-    <script>
-        let map;
-        let service;
-        let infowindow;
-
-        function initMap() {
-            const defaultLocation = new google.maps.LatLng(-34.397, 150.644);
-            infowindow = new google.maps.InfoWindow();
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: defaultLocation,
-                zoom: 15
-            });
-        }
-
-        document.getElementById('chargerForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const location = document.getElementById('location').value;
-            geocodeLocation(location);
-        });
-
-        function geocodeLocation(location) {
-            const geocoder = new google.maps.Geocoder();
-            geocoder.geocode({ address: location }, function(results, status) {
-                if (status === 'OK') {
-                    map.setCenter(results[0].geometry.location);
-                    findChargingStations(results[0].geometry.location);
-                } else {
-                    alert('Geocode was not successful for the following reason: ' + status);
-                }
-            });
-        }
-
-        function findChargingStations(location) {
-            const request = {
-                location: location,
-                radius: '5000',
-                keyword: 'EV charging station'
-            };
-            service = new google.maps.places.PlacesService(map);
-            service.nearbySearch(request, function(results, status) {
-                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    for (let i = 0; i < results.length; i++) {
-                        createMarker(results[i]);
-                    }
-                }
-            });
-        }
-
-        function createMarker(place) {
-            const marker = new google.maps.Marker({
-                map: map,
-                position: place.geometry.location
-            });
-            google.maps.event.addListener(marker, 'click', function() {
-                infowindow.setContent(place.name);
-                infowindow.open(map, this);
-            });
-        }
-    </script>
 </body>
 </html>
