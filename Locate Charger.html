@@ -91,33 +91,33 @@
         <div id="result"></div>
     </div>
     <script>
-        document.getElementById('chargerForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const type = document.getElementById('type').value;
-            const city = document.getElementById('city').value;
-            const state = document.getElementById('state').value;
+          document.getElementById('chargerForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const type = document.getElementById('type').value;
+    const city = document.getElementById('city').value;
+    const state = document.getElementById('state').value;
 
-            fetch('https://script.google.com/macros/s/AKfycbyuwxePlQtqMn4zbheTroW4CiStNxmHJpvFcc2BCVGp0hp1a7mAmu1ZaQU55qtwEYaigg/exec', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: new URLSearchParams({
-                    type: type,
-                    city: city,
-                    state: state
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('result').innerText = 'Available Stations: ' + data.availableStations;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('result').innerText = 'An error occurred. Please try again.';
-            });
-        });
-    </script>
+    fetch('YOUR_APPS_SCRIPT_URL', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+            type: type,
+            city: city,
+            state: state
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('result').innerText = 'Submission successful';
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('result').innerText = 'An error occurred. Please try again.';
+    });
+ });
+ </script>
 </body>
 </html>
 
