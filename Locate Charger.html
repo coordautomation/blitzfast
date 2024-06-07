@@ -43,7 +43,7 @@
             display: flex;
             flex-direction: column;
         }
-        input, select {
+        input {
             margin: 0.5em 0;
             padding: 0.5em;
             font-size: 1em;
@@ -63,6 +63,7 @@
         #map {
             flex: 1;
             width: 100%;
+            height: 500px;
         }
     </style>
 </head>
@@ -71,16 +72,13 @@
         <a href="index.html">Home</a>
         <a href="Product.html">Products</a>
         <a href="contact.html">Contact Us</a>
-         <a href="Locate Charger.html">Locate Charger</a>
+        <a href="Locate Charger.html">Locate Charger</a>
     </nav>
     <div class="container">
         <h1>Find Your EV Charger</h1>
         <form id="chargerForm">
-            <label for="chargerType">Select Charger Type:</label>
-            <select id="chargerType">
-                <option value="AC">AC Charger</option>
-                <option value="DC">DC Charger</option>
-            </select>
+            <label for="location">Enter Your Location:</label>
+            <input type="text" id="location" placeholder="e.g. New York, NY">
             <input type="submit" value="Locate Charger">
         </form>
         <div id="map"></div>
@@ -88,40 +86,62 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
     <script>
+        let map;
+        let service;
+        let infowindow;
+
         function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: -34.397, lng: 150.644},
+            const defaultLocation = new google.maps.LatLng(-34.397, 150.644);
+            infowindow = new google.maps.InfoWindow();
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: defaultLocation,
                 zoom: 15
             });
-            var infoWindow = new google.maps.InfoWindow;
-
-            // Try HTML5 geolocation.
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-
-                    infoWindow.setPosition(pos);
-                    infoWindow.setContent('Location found.');
-                    infoWindow.open(map);
-                    map.setCenter(pos);
-                }, function() {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                });
-            } else {
-                // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, map.getCenter());
-            }
         }
 
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(browserHasGeolocation ?
-                                  'Error: The Geolocation service failed.' :
-                                  'Error: Your browser doesn\'t support geolocation.');
-            infoWindow.open(map);
+        document.getElementById('chargerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const location = document.getElementById('location').value;
+            geocodeLocation(location);
+        });
+
+        function geocodeLocation(location) {
+            const geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ address: location }, function(results, status) {
+                if (status === 'OK') {
+                    map.setCenter(results[0].geometry.location);
+                    findChargingStations(results[0].geometry.location);
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+
+        function findChargingStations(location) {
+            const request = {
+                location: location,
+                radius: '5000',
+                keyword: 'EV charging station'
+            };
+            service = new google.maps.places.PlacesService(map);
+            service.nearbySearch(request, function(results, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    for (let i = 0; i < results.length; i++) {
+                        createMarker(results[i]);
+                    }
+                }
+            });
+        }
+
+        function createMarker(place) {
+            const marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.setContent(place.name);
+                infowindow.open(map, this);
+            });
         }
     </script>
 </body>
