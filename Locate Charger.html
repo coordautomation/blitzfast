@@ -60,52 +60,12 @@
         input[type="submit"]:hover {
             background-color: #555;
         }
-        #results {
-            margin-top: 2em;
-            width: 100%;
-            max-width: 600px;
-            text-align: left;
-        }
-        #results table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        #results table, #results th, #results td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        #results th {
-            background-color: #f2f2f2;
+        #result {
+            margin-top: 1em;
+            font-size: 1.2em;
+            color: #333;
         }
     </style>
-    <script>
-        async function handleSubmit(event) {
-    event.preventDefault();
-    const type = document.getElementById('type').value;
-    const city = document.getElementById('city').value;
-    const state = document.getElementById('state').value;
-
-    const response = await fetch(`https://script.google.com/macros/s/AKfycbxzPaW0mxrdnkPz9820-l8jGfc9le9mzVdpeC24dpxnoQrXp7ClzvFnn7DueuwD8Gfp6A/exec`);
-    const data = await response.json();
-    displayResults(data);
-
-
-        }
-
-        function displayResults(data) {
-            const resultsDiv = document.getElementById('results');
-            if (data.length > 0) {
-                let html = '<table><tr><th>Type</th><th>City</th><th>State</th><th>Charger Info</th></tr>';
-                data.forEach(row => {
-                    html += `<tr><td>${row[1]}</td><td>${row[2]}</td><td>${row[3]}</td><td>${row[4]}</td></tr>`;
-                });
-                html += '</table>';
-                resultsDiv.innerHTML = html;
-            } else {
-                resultsDiv.innerHTML = '<p>No chargers found for the specified location.</p>';
-            }
-        }
-    </script>
 </head>
 <body>
     <nav>
@@ -116,7 +76,7 @@
     </nav>
     <div class="container">
         <h1>Find Your EV Charger</h1>
-        <form id="chargerForm" onsubmit="handleSubmit(event)">
+        <form id="chargerForm">
             <label for="type">Select Charger Type:</label>
             <select id="type" name="type">
                 <option value="public">Public</option>
@@ -128,10 +88,39 @@
             <input type="text" id="state" name="state" placeholder="e.g. NY">
             <input type="submit" value="Locate Charger">
         </form>
-        <div id="results"></div>
+        <div id="result"></div>
     </div>
+    <script>
+        document.getElementById('chargerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const type = document.getElementById('type').value;
+            const city = document.getElementById('city').value;
+            const state = document.getElementById('state').value;
+
+            fetch('https://script.google.com/macros/s/AKfycbztGmZT9WrnlJkbqPcFeV6NuxZBsuGMmlrV2suoPH53q8g82XUaGJ7x0q_rsNsY8mpzfA/exec', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    type: type,
+                    city: city,
+                    state: state
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerText = 'Available Stations: ' + data.availableStations;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('result').innerText = 'An error occurred. Please try again.';
+            });
+        });
+    </script>
 </body>
 </html>
+
 
 
 
