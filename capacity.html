@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC Current Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>AC Current Calculator</h2>
+        <div class="input-group">
+            <label for="batteryCapacity">Battery Capacity (kW):</label>
+            <input type="number" id="batteryCapacity" step="0.01" required>
+        </div>
+        <div class="input-group">
+            <label for="chargerCapacity">Charger Capacity (kW):</label>
+            <input type="number" id="chargerCapacity" step="0.01" required>
+        </div>
+        <button onclick="calculateCurrent()">Calculate Current</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateCurrent() {
+            const batteryCapacity = parseFloat(document.getElementById('batteryCapacity').value);
+            const chargerCapacity = parseFloat(document.getElementById('chargerCapacity').value);
+
+            if (isNaN(batteryCapacity) || isNaN(chargerCapacity) || chargerCapacity === 0) {
+                document.getElementById('result').innerText = 'Please enter valid numbers and ensure charger capacity is not zero.';
+                return;
+            }
+
+            const acCurrent = batteryCapacity / chargerCapacity;
+            document.getElementById('result').innerText = `AC Current: ${acCurrent.toFixed(2)} Amps`;
+        }
+    </script>
+</body>
+</html>
