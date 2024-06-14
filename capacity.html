@@ -62,7 +62,16 @@
             }
 
             const chargingTime = batteryCapacity / chargerCapacity;
-            document.getElementById('result').innerText = `Estimated Charging Time: ${chargingTime.toFixed(2)} hours`;
+            let resultText;
+
+            if (chargingTime < 1) {
+                const chargingTimeInMinutes = chargingTime * 60;
+                resultText = `Estimated Charging Time: ${chargingTimeInMinutes.toFixed(2)} minutes`;
+            } else {
+                resultText = `Estimated Charging Time: ${chargingTime.toFixed(2)} hours`;
+            }
+
+            document.getElementById('result').innerText = resultText;
         });
     </script>
 </body>
